@@ -19,9 +19,15 @@
   <div class="player">
     <div class="dashboard">
       <header>
-        <h4>Now playing</h4>
+        <h4>Now playing</h4> 
         <h2>String</h2>
       </header>
+      <!-- <div class="dark-mode">
+        <input type="checkbox" class="checkbox" id="checkbox">
+        <label for="checkbox" class="label">
+          <div class="ball"></div>
+        </label>
+      </div> -->
       <div class="cd">
         <div class="cd-thumb"
           style="background-image: url('https://photo-playlist-zmp3.zmdcdn.me/s1/v2/mixartist?src=HavwqN7EzbiAH2wA9yxoIL50Sy0dp_8KKK5bm6oQ_4S056B1QSV_4mH8DPPamQyINn8pa6VE_nSB2plNDSAvHHXCRu5ZdUDuLI9z&cv=1&size=thumb/240_240');">
@@ -82,6 +88,13 @@
     const currentTime = $('.current-time');
     const durationTime = $('.duration-time');
     var arrPlayed = [];
+    const html = $('html');
+    const check = $('#checkbox');
+    //darkmode
+    // check.addEventListener('change', function() {
+    //   html.classList.toggle('dark');
+    // });
+
     const app = {
       currentIndex: 0,
       isRandom: false,
@@ -144,11 +157,12 @@
           image: './assets/img/quatimmaulua.jpg'
         },
         {
-          name: 'Cơn mer bâng quer',
+          name: 'Em trang trí',
           singer: 'Ngọt',
-          path: './assets/songs/conmerbangquer.mp3',
-          image: './assets/img/conmerbangquer.jpg'
+          path: './assets/songs/emtrangtri.mp3',
+          image: './assets/img/emtrangtri.jpg'
         },
+       
 
       ],
       setConfig: function (key, value) {
@@ -364,14 +378,17 @@
 
       randomSong: function () {
         do {
+          var isPlayed = false;
           this.currentIndex = Math.floor(Math.random() * this.songs.length);
-        } while (arrPlayed.find(function(index) {
-          if(index == 0) return true;
-          return index == _this.currentIndex;
-        }));
+          for(let i = 0; i <= arrPlayed.length; i++) {
+            if(arrPlayed[i] === _this.currentIndex){
+              isPlayed = true;
+            }
+          };
+        } while (isPlayed || endIndex === this.currentIndex);
         arrPlayed.push(this.currentIndex);
-        if(arrPlayed.length == this.songs.length) arrPlayed = [];
-        console.log(arrPlayed);
+        if(arrPlayed.length == this.songs.length) arrPlayed = []
+        var endIndex = this.currentIndex;
         this.loadCurrentSong();
       },
 
