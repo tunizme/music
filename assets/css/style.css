@@ -119,6 +119,7 @@ header h2 {
 }
 
 .control {
+  width: 360px;
   display: flex;
   justify-content: space-around;
   padding: 18px 0 8px 0;
@@ -126,7 +127,7 @@ header h2 {
 }
 
 .progress {
-  width: 300px;
+  width: 324px;
   height: 6px;
   background: #d3d3d3;
   outline: none;
@@ -250,4 +251,16 @@ header h2 {
 
 .song:not(.active):hover {
   background-color: #EEEEEE;
+}
+
+.volume {
+  position: absolute;
+  display: flex;
+  left: 400px;
+}
+
+
+
+.progress_volume {
+  display: none;
 }
